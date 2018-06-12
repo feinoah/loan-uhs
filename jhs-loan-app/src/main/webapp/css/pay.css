@@ -1,0 +1,163 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html {
+    min-width: 319px;
+    max-width: 750px;
+    margin: 0 auto;
+}
+body{
+    background-color: #f6f6f8;
+    font-size: .7rem;
+}
+li{
+    position: relative;
+    list-style: none;
+    width: 100%;
+    background-color: #fff;
+}
+.inner{
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border-bottom: 1px solid #dcdcdc;
+    margin: 0 .75rem;
+   
+}
+.head{
+    background-color: #fff;
+}
+.main{
+    background-color: #fff;
+}
+button{
+    display: block;
+    text-align: center;
+    border: 0;
+    font-size: .75rem;  
+    background-color: #fff;
+}
+.payBtn{
+    background-color: #1e82d2;
+    color:#fff;
+    border-radius: .2rem;
+    width: 15rem;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    line-height: 2.2rem;
+    margin:0 auto;
+    margin-bottom: 1rem;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.clearfix:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
+.tip1,.tip2{
+    width: 15rem;
+    color:#999;
+    padding: 1rem .7rem;
+    font-size: .6rem;
+}
+.tip1{
+    font-size: .7rem;
+    padding: .45rem .7rem;
+}
+.color{
+    color:#1e82d2;
+}
+.active{
+    background-color: #1e82d2;
+}
+.fr img {
+    display: block;
+    width: .9rem;
+    height: .9rem;
+    margin-top: .8rem;
+}
+.gray {
+    color:#999;
+}
+.success {
+    color: #666;
+}
+.fl img{
+    width: .9rem;
+    height: .9rem;
+    float: left;
+    margin-top: .8rem;
+    margin-right: .25rem;
+}
+em{
+    font-size: .85rem;
+    font-style: normal;
+}
+.modal,.loading {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .6);
+}
+.modal .modalBox{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-left: -5.95rem;
+    margin-top: -4rem;
+    width: 11.9rem;
+    height: 8.025rem;
+    background-color: #fff;
+    border-radius: .7rem;
+
+}
+.loading .modalBox{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-left: -5.95rem;
+    margin-top: -4rem;
+    width: 11.9rem;
+    height: 8.025rem;
+    border-radius: .7rem;
+
+}
+.modal img{
+    width: 100%;
+    height:auto;
+}
+.loading img{
+    width: 50%;
+    height:auto;
+}
+.modal .content {
+    padding: 1rem 0;
+    text-align: center;
+    color: #666;
+    border-bottom: 1px solid #e5e5e5;
+}
+.loading .content {
+    padding: 1rem 0;
+    text-align: center;
+}
+.modal button {
+    width: 50%;
+    line-height: 1rem;
+    border-right: 1px solid #e5e5e5;
+    margin-top: .5rem;
+}
+button:focus {
+    outline: 0;
+}

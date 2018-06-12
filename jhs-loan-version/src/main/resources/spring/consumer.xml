@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd        
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+	<dubbo:application name="com.jhh.jhs.loan.app" />
+	<!-- <import resource="classpath*:conf/consumer-sms.xml" /> -->
+
+	<!--<dubbo:registry id="zz" protocol="zookeeper" address="192.168.1.63:5181,192.168.1.63:5182,192.168.1.63:5183" check="false"/>-->
+	<!--<dubbo:registry id="ss" protocol="zookeeper" address="192.168.1.117:2181" check="false" default="false"/>-->
+	<!--<dubbo:consumer timeout="1200000" retries="0" registry="zz,ss"  />-->
+
+	<dubbo:registry protocol="zookeeper" />
+	<dubbo:annotation package="com.jhh.jhs.loan.app"/>
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.VersionService" id="versionService" check="false" />
+</beans>

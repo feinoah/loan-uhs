@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd        
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+	<dubbo:application name="com.jhh.jhs.loan.app" />
+	<!-- <import resource="classpath*:conf/consumer-sms.xml" /> -->
+
+	<!--<dubbo:registry id="zz" protocol="zookeeper" address="192.168.1.63:5181,192.168.1.63:5182,192.168.1.63:5183" check="false"/>-->
+	<!--<dubbo:registry id="ss" protocol="zookeeper" address="192.168.1.117:2181" check="false" default="false"/>-->
+	<!--<dubbo:consumer timeout="1200000" retries="0" registry="zz,ss"  />-->
+
+	<dubbo:registry protocol="zookeeper" />
+	<dubbo:annotation package="com.jhh.jhs.loan.app"/>
+
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.LoanService" id="loanService" check="false" />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.UserService" id="userService" check="false" />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.NotifyService" id="notifyService" check="false" />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.loan.BankService" id="bankService" check="false"  />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.loan.YsbCollectionService" id="ysbCollectionService" check="false"  timeout="1200000"/>
+	<dubbo:reference interface="com.jhh.jhs.loan.api.loan.YsbpayService" id="ysbpayService" check="false"  timeout="1200000" />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.JuxinliService" id="jxlService" check="false"  />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.contract.ElectronicContractService" id="electronicContractService" check="false"  />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.PhoneInfoService" id="phoneInfoService" check="false"  />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.product.ProductService" id="productService" check="false"  />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.RiskService" id="riskService" check="false" />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.BQSService" id="bqsService" check="false" />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.VersionService" id="versionService" check="false" />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.sms.SmsService" id="smsService" check="false" />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.channel.AgentChannelService" check="false" timeout="600000" id="agentChannelService"/>
+	<dubbo:reference interface="com.jhh.jhs.loan.api.notice.UserBehaviorNoticeService" id="userBehaviorNoticeService" check="false" />
+	<!--海尔支付-->
+	<dubbo:reference interface="com.jhh.jhs.loan.api.capital.HaierCallBackService"
+					 id="haierCallBackService" check="false" timeout="1200000" />
+	<!-- 好友分享-佣金 -->
+	<dubbo:reference interface="com.jhh.jhs.loan.api.share.CommissionShareService" id="commissionShareService" check="false" />
+	<dubbo:reference interface="com.jhh.jhs.loan.api.app.ShareService" id="shareRulesService" check="false" />
+
+	<dubbo:reference interface="com.jhh.jhs.loan.api.common.InvokerComponentService" id="invokerComponentService" check="false"/>
+	<dubbo:reference interface="com.jhh.jhs.loan.api.channel.AgentBatchStateService" check="false" timeout="600000" id="agentBatchState"/>
+</beans>

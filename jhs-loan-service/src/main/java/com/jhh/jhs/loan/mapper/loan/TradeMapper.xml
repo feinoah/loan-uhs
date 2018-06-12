@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jhh.jhs.loan.mapper.loan.TradeMapper" >
+  <resultMap id="BaseResultMap" type="com.jhh.jhs.loan.entity.loan.AutoLoanList" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="creation_user" property="creationUser" jdbcType="INTEGER" />
+    <result column="creation_date" property="creationDate" jdbcType="TIMESTAMP" />
+    <result column="ruler_json" property="rulerJson" jdbcType="VARCHAR" />
+    <result column="trigger_ruler_key" property="triggerRulerKey" jdbcType="VARCHAR" />
+    <result column="trigger_ruler_value" property="triggerRulerValue" jdbcType="VARCHAR" />
+    <result column="loan_amount" property="loanAmount" jdbcType="DECIMAL" />
+    <result column="loan_amount_update_date" property="loanAmountUpdateDate" jdbcType="TIMESTAMP" />
+    <result column="data_type" property="dataType" jdbcType="INTEGER" />
+
+  </resultMap>
+  <update id="updateLoadOrderAtActivityQuery">
+    UPDATE loan_order
+    SET rl_state=#{status}
+    where sid=#{sid}
+
+
+  </update>
+
+
+</mapper>

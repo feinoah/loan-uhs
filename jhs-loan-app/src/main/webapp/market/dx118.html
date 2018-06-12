@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	    <meta name="mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="apple-mobile-web-app-title" content="vue">
+		<title>悠多多注册</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.wrapDiv1{
+				width: 100%;
+				height: 15rem;
+				background: url('./images/banner2.png') no-repeat;
+				background-size: 100% 100%;
+				-webkit-background-size:100% 100%; 
+			}
+			.wrapDiv2{
+				position: relative;
+				top:-1px;
+				width: 100%;
+				height: 18.36rem;
+				background: url('./images/mainBg.png') no-repeat;
+				background-size: 100% 100%;
+				-webkit-background-size:100% 100%; 
+			}
+			.wrapDiv2 .downLoad{
+				position: absolute;
+				bottom:7rem;
+				left:50%;
+				transform: translateX(-50%);
+				width: 10.5rem;
+				height: 2.5rem;
+			}
+		</style>
+		<script type="text/javascript">
+			var oHtml = document.documentElement;
+			 getSize();
+			function getSize(){
+				// 获取屏幕的宽度
+				var ascreen=oHtml.clientWidth;
+				if (ascreen<=319) {
+					oHtml.style.fontSize = '20px';
+				} else if(ascreen>=750){
+					oHtml.style.fontSize = '40px';
+				}else{
+					oHtml.style.fontSize=ascreen/18.75+"px";
+				};		
+			}
+			
+			// 当窗口发生改变的时候调用
+			window.onresize = function(){
+				getSize();
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div class="registerWrap">
+			<div class="wrapDiv1"></div>
+			<div class="wrapDiv2">
+				<a href="javascript:;"><img class="downLoad" src="./images/downLoad.png" alt=""></a>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="js/jquery-1.8.0.min.js" type="text/javascript" ></script>
+<script type="text/javascript">
+    var btn = document.querySelector(".downLoad");
+    btn.onclick = function(){
+        if(navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+            var loadDateTime = new Date();
+            window.setTimeout(function() {
+                var timeOutDateTime = new Date();
+                if (timeOutDateTime - loadDateTime < 5000) {
+                    window.location = "https://itunes.apple.com/us/app/悠多多/id1346481886?l=zh&ls=1&mt=8";//ios下载地址
+                } else {
+                    window.close();
+                }
+            },500);
+
+            window.location.href = 'YouApp://com.youyou.www';
+
+        } else if(navigator.userAgent.match(/android/i)) {
+            //安卓
+            window.location.href = "https://uhuishou.ronghezulin.com/download/UURecovery_1_4_0.apk";
+
+        }
+    }
+</script>
+

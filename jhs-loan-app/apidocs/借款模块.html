@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>借款模块</title>
+<script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script>
+<link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<div id="wmd-preview" class="wmd-preview">
+<h1><a href="index.html">《首页</a> 借款模块:</h1>
+<ul class="toc">
+<li><a href="#用户借款状态节点">用户借款状态节点</a></li><li><a href="#生成借款记录">生成借款记录</a></li><li><a href="#检查用户是否认证完成">检查用户是否认证完成</a></li><li><a href="#插入身份证正面信息">插入身份证正面信息</a></li><li><a href="#插入身份证反面信息">插入身份证反面信息</a></li><li><a href="#插入个人信息 并进行风控">插入个人信息 并进行风控</a></li><li><a href="#银行卡认证">银行卡认证</a></li><li><a href="#获取自己的手机号，及运营商展示">获取自己的手机号，及运营商展示</a></li><li><a href="#获取用户本地的手机通讯录名单">获取用户本地的手机通讯录名单</a></li><li><a href="#认证完成，修改用户、流程、借款状态">认证完成，修改用户、流程、借款状态</a></li><li><a href="#获取签约界面信息">获取签约界面信息</a></li><li><a href="#验证token">验证token</a></li><li><a href="#合同签约，状态改为已签约，添加签约时间">合同签约，状态改为已签约，添加签约时间</a></li><li><a href="#取消借款申请。判断合同状态，在申请中的合同才能取消借款申请。">取消借款申请。判断合同状态，在申请中的合同才能取消借款申请。</a></li><li><a href="#根据用户id查询姓名及身份证号">根据用户id查询姓名及身份证号</a></li><li><a href="#查询所有省市信息">查询所有省市信息</a></li><li><a href="#查询银行列表">查询银行列表</a></li><li><a href="#获取当前节点的认证状态">获取当前节点的认证状态</a></li><li><a href="#人脸识别页面   获取身份证正面照">人脸识别页面   获取身份证正面照</a></li><li><a href="#获取用户姓名及手机号">获取用户姓名及手机号</a></li><li><a href="#后台管理系统代扣接口">后台管理系统代扣接口</a></li><li><a href="#后台管理系统查询订单接口接口">后台管理系统查询订单接口接口</a></li><li><a href="#获取首页滚动信息与预估金额">获取首页滚动信息与预估金额</a></li><li><a href="#获取聚信立协议">获取聚信立协议</a></li><li><a href="#增加第三方接口调用次数接口">增加第三方接口调用次数接口</a></li><li><a href="#还款页面信息接口">还款页面信息接口</a></li><li><a href="#APP用户主动提交还款">APP用户主动提交还款</a></li><li><a href="#身份证OCR">身份证OCR</a></li><li><a href="#人脸识别">人脸识别</a></li><li><a href="#用户银行卡列表">用户银行卡列表</a></li><li><a href="#用户APP更换主副卡">用户APP更换主副卡</a></li><li><a href="#用户是否可以绑定银行卡">用户是否可以绑定银行卡</a></li><li><a href="#芝麻认证">芝麻认证</a></li><li><a href="#单独查询订单状态接口">单独查询订单状态接口</a></li><li><a href="#借款协议">借款协议</a></li><li><a href="#数字证书">数字证书</a></li>
+</ul>
+<hr>
+<h2 id="用户借款状态节点">用户借款状态节点</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getBorrStatus
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="生成借款记录">生成借款记录</h2>
+
+<pre class="prettyprint lang-json">
+method：post
+url: /loan/borrowProduct
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>true</td><td>用户ID</td></tr><tr><td>productId</td><td>string</td><td>true</td><td>产品ID</td></tr><tr><td>borrAmount</td><td>string</td><td>true</td><td>借款金额</td></tr><tr><td>token</td><td>string</td><td>true</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="检查用户是否认证完成">检查用户是否认证完成</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/checkBpm
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="插入身份证正面信息">插入身份证正面信息</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/insertCardInfoz
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr><tr><td>card_num</td><td>string</td><td>false</td><td>身份证号</td></tr><tr><td>name</td><td>string</td><td>false</td><td>姓名</td></tr><tr><td>sex</td><td>string</td><td>false</td><td>性别</td></tr><tr><td>nation</td><td>string</td><td>false</td><td>国籍</td></tr><tr><td>birthday</td><td>string</td><td>false</td><td>生日</td></tr><tr><td>address</td><td>string</td><td>false</td><td>地址</td></tr><tr><td>card_byte</td><td>string</td><td>false</td><td>正面照片流</td></tr><tr><td>head_byte</td><td>string</td><td>false</td><td>正面头像照片流</td></tr><tr><td>description</td><td>string</td><td>false</td><td>备注</td></tr><tr><td>token</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="插入身份证反面信息">插入身份证反面信息</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/insertCardInfof
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr><tr><td>office</td><td>string</td><td>false</td><td>发证机关</td></tr><tr><td>start_date</td><td>string</td><td>false</td><td>有效期开始时间</td></tr><tr><td>end_date</td><td>string</td><td>false</td><td>有效期结束时间</td></tr><tr><td>card_byte</td><td>string</td><td>false</td><td>反面照片流</td></tr><tr><td>description</td><td>string</td><td>false</td><td>备注</td></tr><tr><td>token</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="插入个人信息 并进行风控">插入个人信息 并进行风控</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/insertPrivateInfo
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr><tr><td>qq_num</td><td>string</td><td>false</td><td>QQ号</td></tr><tr><td>email</td><td>string</td><td>false</td><td>邮箱</td></tr><tr><td>usuallyaddress</td><td>string</td><td>false</td><td>常用住址</td></tr><tr><td>education</td><td>string</td><td>false</td><td>教育程度</td></tr><tr><td>marry</td><td>string</td><td>false</td><td>婚姻状况</td></tr><tr><td>getchild</td><td>string</td><td>false</td><td>是否有孩</td></tr><tr><td>profession</td><td>string</td><td>false</td><td>专业</td></tr><tr><td>monthlypay</td><td>string</td><td>false</td><td>月薪</td></tr><tr><td>business</td><td>string</td><td>false</td><td>行业</td></tr><tr><td>busi_province</td><td>string</td><td>false</td><td>公司所在省</td></tr><tr><td>busi_city</td><td>string</td><td>false</td><td>公司所在市</td></tr><tr><td>busi_address</td><td>string</td><td>false</td><td>公司地址</td></tr><tr><td>busi_phone</td><td>string</td><td>false</td><td>公司电话</td></tr><tr><td>relatives</td><td>string</td><td>false</td><td>亲属关系</td></tr><tr><td>relatives_name</td><td>string</td><td>false</td><td>亲属姓名</td></tr><tr><td>rela_phone</td><td>string</td><td>false</td><td>亲属联系方式</td></tr><tr><td>society</td><td>string</td><td>false</td><td>社会关系</td></tr><tr><td>soci_phone</td><td>string</td><td>false</td><td>社会关系联系方式</td></tr><tr><td>society_name</td><td>string</td><td>false</td><td>社会关系姓名</td></tr><tr><td>token</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="银行卡认证">银行卡认证</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/insertBankInfo
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="获取自己的手机号，及运营商展示">获取自己的手机号，及运营商展示</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getPhoneInfo
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="获取用户本地的手机通讯录名单">获取用户本地的手机通讯录名单</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getPhoneList
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr><tr><td>phone_list</td><td>string</td><td>false</td><td>用户本地的手机通讯录名单</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="认证完成，修改用户、流程、借款状态">认证完成，修改用户、流程、借款状态</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/bpmFinish
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="获取签约界面信息">获取签约界面信息</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getSignPage
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="验证token">验证token</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/verifyToken
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td></td></tr><tr><td>token</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="合同签约，状态改为已签约，添加签约时间">合同签约，状态改为已签约，添加签约时间</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/signingBorrow
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr><tr><td>borr_id</td><td>string</td><td>false</td><td>合同id</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="取消借款申请。判断合同状态，在申请中的合同才能取消借款申请。">取消借款申请。判断合同状态，在申请中的合同才能取消借款申请。</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/cancelAskBorrow
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr><tr><td>borr_id</td><td>string</td><td>false</td><td>合同id</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="根据用户id查询姓名及身份证号">根据用户id查询姓名及身份证号</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getIDNumber
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户id</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="查询所有省市信息">查询所有省市信息</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getCity
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="查询银行列表">查询银行列表</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getBankList
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="获取当前节点的认证状态">获取当前节点的认证状态</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getNodeStatus
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr><tr><td>node_id</td><td>string</td><td>false</td><td>节点编号</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="人脸识别页面   获取身份证正面照">人脸识别页面   获取身份证正面照</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getCardz
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="获取用户姓名及手机号">获取用户姓名及手机号</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getNamePhone
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="后台管理系统代扣接口">后台管理系统代扣接口</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/askCollect
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>request</td><td>unkown</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="后台管理系统查询订单接口接口">后台管理系统查询订单接口接口</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/queryCollectStatus
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="获取首页滚动信息与预估金额">获取首页滚动信息与预估金额</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/getRolling
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="获取聚信立协议">获取聚信立协议</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/juxinliInfo
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="增加第三方接口调用次数接口">增加第三方接口调用次数接口</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/addCount
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户id</td></tr><tr><td>type</td><td>string</td><td>false</td><td>身份证接口1/活体检测接口2</td></tr><tr><td>count</td><td>string</td><td>false</td><td>调用接口数</td></tr><tr><td>status</td><td>string</td><td>false</td><td>本次认证是否成功s/f</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="还款页面信息接口">还款页面信息接口</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/repayInfo
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="APP用户主动提交还款">APP用户主动提交还款</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/AppRepay
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr><tr><td>serial</td><td>string</td><td>false</td><td>唯一码</td></tr><tr><td>amount</td><td>string</td><td>false</td><td>还款金额</td></tr><tr><td>token</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="身份证OCR">身份证OCR</h2>
+
+<pre class="prettyprint lang-json">
+method：post
+url: /loan/cardOcr
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>request</td><td>unkown</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="人脸识别">人脸识别</h2>
+
+<pre class="prettyprint lang-json">
+method：post
+url: /loan/faceVerify
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>request</td><td>unkown</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="用户银行卡列表">用户银行卡列表</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/personBanks
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="用户APP更换主副卡">用户APP更换主副卡</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/changeBank
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td>用户ID</td></tr><tr><td>bank_num</td><td>string</td><td>false</td><td>银行卡号</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="用户是否可以绑定银行卡">用户是否可以绑定银行卡</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/canBinding
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>per_id</td><td>string</td><td>false</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="芝麻认证">芝麻认证</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/zhima
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="单独查询订单状态接口">单独查询订单状态接口</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/orderStatus
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>serialNo</td><td>string</td><td>false</td><td>订单号</td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="借款协议">借款协议</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/agreement
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>request</td><td>unkown</td><td>false</td><td></td></tr><tr><td>per_id</td><td>string</td><td>true</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr><h2 id="数字证书">数字证书</h2>
+
+<pre class="prettyprint lang-json">
+method：get|post
+url: /loan/numberPage
+</pre>
+
+<p><strong>参数列表</strong></p>
+
+<table><tr><th>参数名</th><th>类型</th><th>必需</th><th>描述</th></tr><tr><td>request</td><td>unkown</td><td>false</td><td></td></tr><tr><td>per_id</td><td>string</td><td>true</td><td></td></tr></table>
+
+<p>返回结果: <a href="javaCodes/Admin.html">Android Code</a> | <a href="iosCodes/Admin.html">IOS Code</a></p>
+
+<pre class="prettyprint lang-json">
+{
+  "code": "string //200表示成功",
+  "info": "string //消息",
+  "data": "string //返回数据"
+}
+</pre>
+
+<hr>
+</div>
+</body>
+</html>

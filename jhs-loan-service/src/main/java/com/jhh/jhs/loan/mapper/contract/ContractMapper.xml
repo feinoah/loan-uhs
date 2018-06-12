@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jhh.jhs.loan.mapper.contract.ContractMapper">
+
+    <insert id="insertContract" parameterType="com.jhh.jhs.loan.entity.contract.Contract">
+        INSERT INTO contract (borr_id, borr_num,status, result_json,create_date)
+        SELECT #{borrId},#{borrNum},#{status},#{resultJson},#{createDate}
+        FROM DUAL WHERE NOT EXISTS(SELECT id FROM contract WHERE borr_id = #{borrId});
+    </insert>
+
+    <select id="getContractUrl" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT GROUP_CONCAT(image_url) FROM contract where borr_id = #{borrId}
+    </select>
+
+</mapper>
+

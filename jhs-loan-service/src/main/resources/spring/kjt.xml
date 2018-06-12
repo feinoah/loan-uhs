@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="securityService2" class="com.kjtpay.gateway.common.util.security.SecurityService">
+        <!-- 商户私钥 -->
+        <constructor-arg index="0">
+            <value>${privateKey}</value>
+        </constructor-arg>
+        <!-- 快捷通公钥 -->
+        <constructor-arg index="1">
+            <value>${kjtPublicKey}</value>
+        </constructor-arg>
+    </bean>
+</beans>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jhh.jhs.loan.mapper.app.VersionMapper" >
+  <resultMap id="version" type="com.jhh.jhs.loan.entity.app.Version" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="clientName" property="clientName" jdbcType="VARCHAR" />
+    <result column="versionName" property="versionName" jdbcType="VARCHAR" />
+    <result column="versionCode" property="versionCode" jdbcType="INTEGER" />
+    <result column="haveNewVersion" property="haveNewVersion" jdbcType="INTEGER" />
+    <result column="forceUpdate" property="forceUpdate" jdbcType="INTEGER" />
+    <result column="downloadUrl" property="downloadUrl" jdbcType="VARCHAR" />
+    <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="updateDate" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="getVersion" resultMap="version" parameterType="java.lang.String">
+      SELECT * from
+      version
+      WHERE
+      version.clientName = #{clientName}
+      AND
+      version.versionName = #{versionName}
+  </select>
+  <select id="getMaxVersion" resultMap="version" parameterType="java.lang.String">
+    select
+      *
+    from version
+    WHERE
+    version.clientName = #{clientName}
+    ORDER BY id DESC  LIMIT 1
+
+  </select>
+
+</mapper>

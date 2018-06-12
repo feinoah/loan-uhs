@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Admin</title>
+<script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script>
+<link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class Admin implements Serializable{
+
+    private String code; //200表示成功
+    private String info; //消息
+    private String data; //返回数据
+
+    @JSONField(name="code")
+    public String getCode(){
+        return code;
+    }
+
+    @JSONField(name="code")
+    public void setCode(String code){
+        this.code = code;
+    }
+
+    @JSONField(name="info")
+    public String getInfo(){
+        return info;
+    }
+
+    @JSONField(name="info")
+    public void setInfo(String info){
+        this.info = info;
+    }
+
+    @JSONField(name="data")
+    public String getData(){
+        return data;
+    }
+
+    @JSONField(name="data")
+    public void setData(String data){
+        this.data = data;
+    }
+
+}
+</pre>
+
+
+
+</body>
+</html>

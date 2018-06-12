@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--银生宝渠道-->
+    <bean id="ysb" class="com.jhh.jhs.loan.service.channel.ChannelYsbServiceImpl">
+    </bean>
+    <!--海尔渠道-->
+    <bean id="haier"  class="com.jhh.jhs.loan.service.channel.ChannelHaierServiceImpl">
+    </bean>
+
+    <!--支付中心渠道-->
+    <bean id="payCenter"  class="com.jhh.jhs.loan.service.channel.ChannelPayCenterServiceImpl">
+    </bean>
+
+    <!--银生宝代付代扣渠道-->
+    <bean id="tradeysb"  class="com.jhh.jhs.loan.service.channel.TradeYsbServiceImpl">
+    </bean>
+    <!--海尔代付代扣渠道-->
+    <bean id="tradehaier"  class="com.jhh.jhs.loan.service.channel.TradeHaierServiceImpl">
+    </bean>
+
+    <!--支付中心代付代扣渠道-->
+    <bean id="tradePayCenter"  class="com.jhh.jhs.loan.service.channel.TradePayCenterServiceImpl">
+    </bean>
+</beans>

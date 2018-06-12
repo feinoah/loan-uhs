@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jhh.jhs.loan.mapper.product.ProductTermMapper" >
+  <resultMap id="BaseResultMap" type="com.jhh.jhs.loan.entity.app.ProductTerm" >
+    <id column="id" property="term_id" jdbcType="INTEGER" />
+    <result column="product_id" property="product_id" jdbcType="INTEGER" />
+    <result column="term" property="term" jdbcType="INTEGER" />
+    <result column="penalty_level_1" property="penalty_level_1" jdbcType="DECIMAL" />
+    <result column="penalty_level_2" property="penalty_level_2" jdbcType="DECIMAL" />
+    <result column="penalty_level_3" property="penalty_level_3" jdbcType="DECIMAL" />
+    <result column="penalty_level_4" property="penalty_level_4" jdbcType="DECIMAL" />
+    <result column="penalty_level_5" property="penalty_level_5" jdbcType="DECIMAL" />
+    <result column="penalty_interest_leve_1" property="penalty_interest_leve_1" jdbcType="DECIMAL" />
+    <result column="penalty_interest_leve_2" property="penalty_interest_leve_2" jdbcType="DECIMAL" />
+    <result column="penalty_interest_leve_3" property="penalty_interest_leve_3" jdbcType="DECIMAL" />
+    <result column="penalty_interest_leve_4" property="penalty_interest_leve_4" jdbcType="DECIMAL" />
+    <result column="penalty_interest_leve_5" property="penalty_interest_leve_5" jdbcType="DECIMAL" />
+    <result column="interest_rate" property="interest_rate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, product_id, term, penalty_level_1, penalty_level_2, penalty_level_3, penalty_level_4,penalty_level_5,
+    penalty_interest_leve_1, penalty_interest_leve_2, penalty_interest_leve_3, penalty_interest_leve_4, penalty_interest_leve_5, interest_rate
+  </sql>
+  <!-- 根据产品ID查询期数表 -->
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_term
+    where id = #{term_id,jdbcType=INTEGER}
+  </select>
+
+</mapper>

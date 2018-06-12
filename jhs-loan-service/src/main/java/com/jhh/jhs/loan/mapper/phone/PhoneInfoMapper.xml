@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jhh.jhs.loan.mapper.phone.PhoneInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.jhh.jhs.loan.entity.app.PhoneInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="per_id" property="perId" jdbcType="INTEGER" />
+    <result column="borr_id" property="borrId" jdbcType="INTEGER" />
+    <result column="device" property="device" jdbcType="VARCHAR" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="serial_number_url" property="serialNumberUrl" jdbcType="VARCHAR" />
+    <result column="serial_number" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, per_id, borr_id, device, info, serial_number_url, serial_number, create_date,
+    update_date
+  </sql>
+
+  <select id="selectNow" parameterType="string" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    FROM phone_info where id = (SELECT max(id) from phone_info where per_id = #{perId})
+  </select>
+</mapper>

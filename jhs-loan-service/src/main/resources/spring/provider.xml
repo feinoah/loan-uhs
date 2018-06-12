@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+          http://www.springframework.org/schema/beans/spring-beans.xsd  
+                http://code.alibabatech.com/schema/dubbo      
+                  http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- 和本地bean一样实现服务 <bean id="userService" class="com.loan_server.app_service.UserApiImpl" 
+		/> -->
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="loan_server" />
+	<!--<dubbo:registry  id="host" protocol="zookeeper"/>-->
+	<!--<dubbo:registry id="self" address="192.168.1.63:5181,192.168.1.63:5182,192.168.1.63:5183" check="false"/>-->
+
+    <!--<dubbo:registry id="host" address="192.168.1.117:2181" check="false" default="false"/>-->
+
+
+    <!--<dubbo:registry id="sett" address="10.20.154.177:9010" default="false"/>-->
+	<dubbo:registry  id="host" protocol="zookeeper"/>
+
+	<dubbo:protocol name="dubbo" threads="1000" accepts="50000" />  
+	<dubbo:provider timeout="1200000" retries="0" />
+	<dubbo:annotation package="com.jhh.jhs.loan.service" />
+
+	<bean id="collectorsListService" class="com.jhh.jhs.loan.service.loan.CollectorsListServiceImpl"/>
+	<dubbo:service interface="com.jhh.jhs.loan.api.loan.CollectorsListService" ref="collectorsListService" timeout="12000000"/>
+
+	<dubbo:service id="ysbpayService" interface="com.jhh.jhs.loan.api.loan.YsbpayService" class="com.jhh.jhs.loan.service.loan.YsbPayServiceImpl" timeout="12000000" />
+
+	<dubbo:service id="ysbCollectionService" interface="com.jhh.jhs.loan.api.loan.YsbCollectionService" class="com.jhh.jhs.loan.service.loan.YsbCollectionServiceImpl" timeout="12000000"  />
+
+	<dubbo:service id="bankService" interface="com.jhh.jhs.loan.api.loan.BankService" class="com.jhh.jhs.loan.service.capital.thridpay.ysb.BankServiceImpl" timeout="12000000"  />
+
+<!--
+	<dubbo:service id="withdrawalService" interface="com.jhh.jhs.loan.api.channel.WithdrawalService" class="com.jhh.jhs.loan.service.channel.WithdrawalServiceImpl" timeout="12000000"  />
+-->
+
+	<dubbo:reference interface="com.jinhuhang.settlement.service.SettlementAPI" id="settlementAPI" check="false"/>
+
+	<dubbo:reference interface="com.jhh.jhs.loan.api.channel.TradePayService" id="tradePayService" check="false"/>
+
+
+
+	<!-- 海尔支付配置 -->
+	<bean id="haierCallBackService" class="com.jhh.jhs.loan.service.haier.HaierCallBackServiceImpl"/>
+	<dubbo:service interface="com.jhh.jhs.loan.api.capital.HaierCallBackService" ref="haierCallBackService" />
+
+	<bean id="commissionShareService" class="com.jhh.jhs.loan.service.share.CommissionShareServiceImpl"/>
+	<dubbo:service interface="com.jhh.jhs.loan.api.share.CommissionShareService" ref="commissionShareService"/>
+	<bean id="riskBlackService" class="com.jhh.jhs.loan.service.black.RiskBlackServiceImpl"/>
+
+	<dubbo:service interface="com.jhh.jhs.loan.api.black.RiskBlackService" ref="riskBlackService" timeout="12000000" />
+	<bean id="agentBatchState" class="com.jhh.jhs.loan.service.channel.ChannelPayCenterServiceImpl"/>
+	<dubbo:service interface="com.jhh.jhs.loan.api.channel.AgentBatchStateService" ref="agentBatchState"/>
+
+	<!--百可录通知类电话配置-->
+	<bean id="baikeluRemindService" class="com.jhh.jhs.loan.service.baikelu.BaikeluRemindServiceImpl"/>
+	<dubbo:service interface="com.jhh.jhs.loan.api.baikelu.BaikeluRemindService" ref="baikeluRemindService"/>
+
+	<bean id="invokerComponentService" class="com.jhh.jhs.loan.service.common.InvokerComponentServiceImpl"/>
+
+	<dubbo:service interface="com.jhh.jhs.loan.api.common.InvokerComponentService" ref="invokerComponentService" timeout="12000000"/>
+
+</beans>

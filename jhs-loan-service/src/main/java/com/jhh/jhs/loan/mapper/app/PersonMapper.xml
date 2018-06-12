@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jhh.jhs.loan.mapper.app.PersonMapper">
+	<resultMap id="BaseResultMap" type="com.jhh.jhs.loan.entity.app.Person">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="check_date" property="checkDate" jdbcType="DATE" />
+		<result column="phone_business" property="phoneBusiness" jdbcType="VARCHAR" />
+		<result column="phone_service" property="phoneService" jdbcType="VARCHAR" />
+		<result column="grade" property="grade" jdbcType="INTEGER" />
+		<result column="is_login" property="isLogin" jdbcType="INTEGER" />
+		<result column="token_id" property="tokenId" jdbcType="VARCHAR" />
+		<result column="source" property="source" jdbcType="VARCHAR" />
+		<result column="inviter" property="inviter" jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="sync" property="sync" jdbcType="CHAR" />
+		<result column="is_manual" property="isManual" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="card_num" property="cardNum" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="nation" property="nation" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="DATE" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="office" property="office" jdbcType="VARCHAR" />
+		<result column="start_date" property="startDate" jdbcType="DATE" />
+		<result column="end_date" property="endDate" jdbcType="DATE" />
+		<result column="card_photoz" property="cardPhotoz" jdbcType="VARCHAR" />
+		<result column="card_photof" property="cardPhotof" jdbcType="VARCHAR" />
+		<result column="card_photod" property="cardPhotod" jdbcType="VARCHAR" />
+		<result column="card_photov" property="cardPhotov" jdbcType="VARCHAR" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="bank_card" property="bankCard" jdbcType="VARCHAR" />
+		<result column="contact_url" property="contactUrl" jdbcType="VARCHAR" />
+		<result column="contact_num" property="contactNum" jdbcType="INTEGER" />
+		<result column="contact_date" property="contactDate" jdbcType="DATE" />
+		<result column="balance" property="balance" jdbcType="DECIMAL" />
+		<result column="device" property="device" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, username, password, phone, check_date, phone_business, phone_service, grade,
+    is_login, token_id, source, inviter, create_date, update_date, sync, is_manual, description,
+    card_num, name, sex, nation, birthday, address, office, start_date, end_date, card_photoz,
+    card_photof, card_photod, card_photov, bank_name, bank_card, contact_url, contact_num,
+    contact_date, balance
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+		select
+		<include refid="Base_Column_List" />
+		from person
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+		delete from person
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jhh.jhs.loan.entity.app.Person" >
+		insert into person (id, username, password,
+		phone, check_date, phone_business,
+		phone_service, grade, is_login,
+		token_id, source, inviter,
+		create_date, update_date, sync,
+		is_manual, description, card_num,
+		name, sex, nation,
+		birthday, address, office,
+		start_date, end_date, card_photoz,
+		card_photof, card_photod, card_photov,
+		bank_name, bank_card, contact_url,
+		contact_num, contact_date, balance
+		)
+		values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{checkDate,jdbcType=DATE}, #{phoneBusiness,jdbcType=VARCHAR},
+		#{phoneService,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, #{isLogin,jdbcType=INTEGER},
+		#{tokenId,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{inviter,jdbcType=INTEGER},
+		#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{sync,jdbcType=CHAR},
+		#{isManual,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{cardNum,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR},
+		#{birthday,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, #{office,jdbcType=VARCHAR},
+		#{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{cardPhotoz,jdbcType=VARCHAR},
+		#{cardPhotof,jdbcType=VARCHAR}, #{cardPhotod,jdbcType=VARCHAR}, #{cardPhotov,jdbcType=VARCHAR},
+		#{bankName,jdbcType=VARCHAR}, #{bankCard,jdbcType=VARCHAR}, #{contactUrl,jdbcType=VARCHAR},
+		#{contactNum,jdbcType=INTEGER}, #{contactDate,jdbcType=DATE}, #{balance,jdbcType=DECIMAL}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.jhh.jhs.loan.entity.app.Person" useGeneratedKeys="true" keyProperty="id">
+		insert into person
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+				id,
+			</if>
+			<if test="username != null" >
+				username,
+			</if>
+			<if test="password != null" >
+				password,
+			</if>
+			<if test="phone != null" >
+				phone,
+			</if>
+			<if test="checkDate != null" >
+				check_date,
+			</if>
+			<if test="phoneBusiness != null" >
+				phone_business,
+			</if>
+			<if test="phoneService != null" >
+				phone_service,
+			</if>
+			<if test="grade != null" >
+				grade,
+			</if>
+			<if test="isLogin != null" >
+				is_login,
+			</if>
+			<if test="tokenId != null" >
+				token_id,
+			</if>
+			<if test="source != null" >
+				source,
+			</if>
+			<if test="inviter != null" >
+				inviter,
+			</if>
+			<if test="createDate != null" >
+				create_date,
+			</if>
+			<if test="updateDate != null" >
+				update_date,
+			</if>
+			<if test="sync != null" >
+				sync,
+			</if>
+			<if test="isManual != null" >
+				is_manual,
+			</if>
+			<if test="description != null" >
+				description,
+			</if>
+			<if test="cardNum != null" >
+				card_num,
+			</if>
+			<if test="name != null" >
+				name,
+			</if>
+			<if test="sex != null" >
+				sex,
+			</if>
+			<if test="nation != null" >
+				nation,
+			</if>
+			<if test="birthday != null" >
+				birthday,
+			</if>
+			<if test="address != null" >
+				address,
+			</if>
+			<if test="office != null" >
+				office,
+			</if>
+			<if test="startDate != null" >
+				start_date,
+			</if>
+			<if test="endDate != null" >
+				end_date,
+			</if>
+			<if test="cardPhotoz != null" >
+				card_photoz,
+			</if>
+			<if test="cardPhotof != null" >
+				card_photof,
+			</if>
+			<if test="cardPhotod != null" >
+				card_photod,
+			</if>
+			<if test="cardPhotov != null" >
+				card_photov,
+			</if>
+			<if test="bankName != null" >
+				bank_name,
+			</if>
+			<if test="bankCard != null" >
+				bank_card,
+			</if>
+			<if test="contactUrl != null" >
+				contact_url,
+			</if>
+			<if test="contactNum != null" >
+				contact_num,
+			</if>
+			<if test="contactDate != null" >
+				contact_date,
+			</if>
+			<if test="balance != null" >
+				balance,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="username != null" >
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null" >
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null" >
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="checkDate != null" >
+				#{checkDate,jdbcType=DATE},
+			</if>
+			<if test="phoneBusiness != null" >
+				#{phoneBusiness,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneService != null" >
+				#{phoneService,jdbcType=VARCHAR},
+			</if>
+			<if test="grade != null" >
+				#{grade,jdbcType=INTEGER},
+			</if>
+			<if test="isLogin != null" >
+				#{isLogin,jdbcType=INTEGER},
+			</if>
+			<if test="tokenId != null" >
+				#{tokenId,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null" >
+				#{source,jdbcType=VARCHAR},
+			</if>
+			<if test="inviter != null" >
+				#{inviter,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null" >
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null" >
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sync != null" >
+				#{sync,jdbcType=CHAR},
+			</if>
+			<if test="isManual != null" >
+				#{isManual,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null" >
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNum != null" >
+				#{cardNum,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null" >
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null" >
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null" >
+				#{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null" >
+				#{birthday,jdbcType=DATE},
+			</if>
+			<if test="address != null" >
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="office != null" >
+				#{office,jdbcType=VARCHAR},
+			</if>
+			<if test="startDate != null" >
+				#{startDate,jdbcType=DATE},
+			</if>
+			<if test="endDate != null" >
+				#{endDate,jdbcType=DATE},
+			</if>
+			<if test="cardPhotoz != null" >
+				#{cardPhotoz,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPhotof != null" >
+				#{cardPhotof,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPhotod != null" >
+				#{cardPhotod,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPhotov != null" >
+				#{cardPhotov,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null" >
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCard != null" >
+				#{bankCard,jdbcType=VARCHAR},
+			</if>
+			<if test="contactUrl != null" >
+				#{contactUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="contactNum != null" >
+				#{contactNum,jdbcType=INTEGER},
+			</if>
+			<if test="contactDate != null" >
+				#{contactDate,jdbcType=DATE},
+			</if>
+			<if test="balance != null" >
+				#{balance,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jhh.jhs.loan.entity.app.Person" >
+		update person
+		<set >
+			<if test="username != null" >
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null" >
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null" >
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="checkDate != null" >
+				check_date = #{checkDate,jdbcType=DATE},
+			</if>
+			<if test="phoneBusiness != null" >
+				phone_business = #{phoneBusiness,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneService != null" >
+				phone_service = #{phoneService,jdbcType=VARCHAR},
+			</if>
+			<if test="grade != null" >
+				grade = #{grade,jdbcType=INTEGER},
+			</if>
+			<if test="isLogin != null" >
+				is_login = #{isLogin,jdbcType=INTEGER},
+			</if>
+			<if test="tokenId != null" >
+				token_id = #{tokenId,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null" >
+				source = #{source,jdbcType=VARCHAR},
+			</if>
+			<if test="inviter != null" >
+				inviter = #{inviter,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null" >
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null" >
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sync != null" >
+				sync = #{sync,jdbcType=CHAR},
+			</if>
+			<if test="isManual != null" >
+				is_manual = #{isManual,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null" >
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNum != null" >
+				card_num = #{cardNum,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null" >
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null" >
+				sex = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null" >
+				nation = #{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null" >
+				birthday = #{birthday,jdbcType=DATE},
+			</if>
+			<if test="address != null" >
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="office != null" >
+				office = #{office,jdbcType=VARCHAR},
+			</if>
+			<if test="startDate != null" >
+				start_date = #{startDate,jdbcType=DATE},
+			</if>
+			<if test="endDate != null" >
+				end_date = #{endDate,jdbcType=DATE},
+			</if>
+			<if test="cardPhotoz != null" >
+				card_photoz = #{cardPhotoz,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPhotof != null" >
+				card_photof = #{cardPhotof,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPhotod != null" >
+				card_photod = #{cardPhotod,jdbcType=VARCHAR},
+			</if>
+			<if test="cardPhotov != null" >
+				card_photov = #{cardPhotov,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null" >
+				bank_name = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCard != null" >
+				bank_card = #{bankCard,jdbcType=VARCHAR},
+			</if>
+			<if test="contactUrl != null" >
+				contact_url = #{contactUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="contactNum != null" >
+				contact_num = #{contactNum,jdbcType=INTEGER},
+			</if>
+			<if test="contactDate != null" >
+				contact_date = #{contactDate,jdbcType=DATE},
+			</if>
+			<if test="balance != null" >
+				balance = #{balance,jdbcType=DECIMAL},
+			</if>
+			<if test="loginTime != null" >
+				login_time = #{loginTime},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jhh.jhs.loan.entity.app.Person" >
+		update person
+		set username = #{username,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		check_date = #{checkDate,jdbcType=DATE},
+		phone_business = #{phoneBusiness,jdbcType=VARCHAR},
+		phone_service = #{phoneService,jdbcType=VARCHAR},
+		grade = #{grade,jdbcType=INTEGER},
+		is_login = #{isLogin,jdbcType=INTEGER},
+		token_id = #{tokenId,jdbcType=VARCHAR},
+		source = #{source,jdbcType=VARCHAR},
+		inviter = #{inviter,jdbcType=INTEGER},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date = #{updateDate,jdbcType=TIMESTAMP},
+		sync = #{sync,jdbcType=CHAR},
+		is_manual = #{isManual,jdbcType=VARCHAR},
+		description = #{description,jdbcType=VARCHAR},
+		card_num = #{cardNum,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=VARCHAR},
+		nation = #{nation,jdbcType=VARCHAR},
+		birthday = #{birthday,jdbcType=DATE},
+		address = #{address,jdbcType=VARCHAR},
+		office = #{office,jdbcType=VARCHAR},
+		start_date = #{startDate,jdbcType=DATE},
+		end_date = #{endDate,jdbcType=DATE},
+		card_photoz = #{cardPhotoz,jdbcType=VARCHAR},
+		card_photof = #{cardPhotof,jdbcType=VARCHAR},
+		card_photod = #{cardPhotod,jdbcType=VARCHAR},
+		card_photov = #{cardPhotov,jdbcType=VARCHAR},
+		bank_name = #{bankName,jdbcType=VARCHAR},
+		bank_card = #{bankCard,jdbcType=VARCHAR},
+		contact_url = #{contactUrl,jdbcType=VARCHAR},
+		contact_num = #{contactNum,jdbcType=INTEGER},
+		contact_date = #{contactDate,jdbcType=DATE},
+		balance = #{balance,jdbcType=DECIMAL}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="userLogin" parameterType="com.jhh.jhs.loan.entity.app.Person"
+		resultMap="BaseResultMap">
+		SELECT * FROM person WHERE phone = #{phone} AND PASSWORD
+		= #{password} and is_login = 1
+	</select>
+	<!--  根据手机号查询信息，用于登录 -->
+	<select id="userLoginByPhone" parameterType="com.jhh.jhs.loan.entity.app.Person"
+		resultMap="BaseResultMap">
+		SELECT * FROM person WHERE phone = #{phone} and is_login = 1
+	</select>
+
+	<update id="updatePassword" parameterType="com.jhh.jhs.loan.entity.app.Person">
+		UPDATE person SET
+		PASSWORD = #{password} WHERE phone = #{phone}
+	</update>
+
+	<update id="personUpdatePassword" parameterType="com.jhh.jhs.loan.entity.app.Person">
+		UPDATE person
+		SET PASSWORD = #{password} WHERE id = #{id} AND PASSWORD =
+		#{oldPassword}
+	</update>
+	<select id="getPersonByPhone" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT id, username, password, phone, check_date, phone_business, phone_service, grade,
+    is_login, token_id, source, inviter, create_date, update_date, sync, is_manual, description,
+    card_num, name, sex, nation, birthday, address, office, start_date, end_date, card_photoz,
+    card_photof, card_photod, card_photov, bank_name, bank_card, contact_url, contact_num,
+    contact_date, balance FROM
+		person
+		WHERE phone = #{phone}
+	</select>
+
+	<!-- 获取用户当前tokenId -->
+	<select id="getTokenId" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select token_id
+		from person
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getPersonInfoByBorr" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT
+		*
+		FROM
+		person AS v
+		WHERE
+		v.perId=(SELECT l.per_id FROM borrow_list as l WHERE l.id = #{brroid,jdbcType=INTEGER})
+	</select>
+
+	<!-- 检查手机号是否黑名单-->
+	<select id="checkBlack" resultType="java.lang.Integer"
+			parameterType="java.lang.String">
+		SELECT COUNT(1) FROM person where blacklist = 'Y' AND
+		phone = #{phone}
+	</select>
+
+	<select id="getPersonAvailableBorrowCount" parameterType="java.lang.Integer"
+			resultType="java.lang.Integer">
+		select count(t2.id) from (select id from person t where t.id=#{userId} and t.blacklist='N') t1
+		left join borrow_list t2 on t1.id = t2.per_id and t2.borr_status = 'BS006'
+	</select>
+
+	<select id="selectByCardNum" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT id FROM person where card_num = #{cardNum}
+ 	</select>
+
+	<select id="getPersonInfo" parameterType="java.lang.String" resultType="com.jhh.jhs.loan.entity.app_vo.PersonInfo">SELECT p.card_num AS cardNum,
+		pr.monthlypay AS monthlypay, pr.profession AS profession,
+		pr.relatives AS relatives,pr.relatives_name AS relativesName,pr.rela_phone AS relaPhone ,
+		pr.society AS society,pr.society_name AS societyName,pr.soci_phone AS sociPhone ,
+		p.name AS name,p.id AS perId,
+		p.phone AS phone
+		FROM person p,private pr
+		WHERE p.id = pr.per_id AND p.id = #{perId}
+	</select>
+
+	<select id="getFollowUsInfo" resultType="java.lang.String">
+		select description FROM code_value where code_type = 'menu_followUs' and enabled_flag = 'y'
+	</select>
+
+	<select id="getInviterInfo" resultType="com.jhh.jhs.loan.entity.share.InviterInfo">
+		SELECT
+			t5.perId as perId,
+			t5.phone as phone,
+			t5.deviceType as deviceType,
+			t5.firstLevelInviter as firstLevelInviter,
+			t5.firstLevelInviterPhone as firstLevelInviterPhone,
+			t5.secondLevelInviter as secondLevelInviter,
+			t5.secondLevelInviterPhone as secondLevelInviterPhone,
+			t5.thirdLevelInviter as thirdLevelInviter,
+			t6.phone AS thirdLevelInviterPhone
+		FROM(	SELECT
+					t3.*, t4.phone AS secondLevelInviterPhone,
+					t4.inviter AS thirdLevelInviter
+				FROM(	SELECT
+							t1.*, t2.phone AS firstLevelInviterPhone,
+							t2.inviter AS secondLevelInviter
+						FROM(	SELECT
+									t.id AS perId,
+									t.phone,
+									i.device as deviceType,
+									t.inviter AS firstLevelInviter
+								FROM	person t
+								LEFT JOIN phone_info i on i.per_id = t.id AND i.borr_id = #{param2}
+								WHERE	t.id = #{param1}) t1
+						LEFT JOIN person t2 ON t2.id = t1.firstLevelInviter) t3
+				LEFT JOIN person t4 ON t4.id = t3.secondLevelInviter) t5
+		LEFT JOIN person t6 ON t6.id = t5.thirdLevelInviter
+	</select>
+
+
+	<select id="getPersonAndDevice" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT
+		p.*,pif.device
+		FROM person p LEFT JOIN phone_info pif ON p.id = pif.per_id WHERE p.id = #{perId} LIMIT 1
+	</select>
+
+</mapper>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jhh.jhs.loan.mapper.share.CommissionOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.jhh.jhs.loan.entity.share.CommissionOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="per_id" property="perId" jdbcType="INTEGER" />
+    <result column="device" property="device" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="INTEGER" />
+    <result column="inviter_level_1" property="inviterLevel1" jdbcType="INTEGER" />
+    <result column="inviter_phone_level_1" property="inviterPhoneLevel1" jdbcType="VARCHAR" />
+    <result column="inviter_level_2" property="inviterLevel2" jdbcType="INTEGER" />
+    <result column="inviter_phone_level_2" property="inviterPhoneLevel2" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="INTEGER" />
+    <result column="channel_phone" property="channelPhone" jdbcType="VARCHAR" />
+    <result column="rule_id" property="ruleId" jdbcType="INTEGER" />
+    <result column="trigger_group" property="triggerGroup" jdbcType="INTEGER" />
+    <result column="inviter_level" property="inviterLevel" jdbcType="INTEGER" />
+    <result column="tracking_status" property="trackingStatus" jdbcType="INTEGER" />
+    <result column="review_id" property="reviewId" jdbcType="INTEGER" />
+    <result column="withdraw_status" property="withdrawStatus" jdbcType="INTEGER" />
+    <result column="commission_amount" property="commissionAmount" jdbcType="DECIMAL" />
+    <result column="creation_date" property="creationDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, per_id, device, phone, inviter_level_1, inviter_phone_level_1, inviter_level_2, 
+    inviter_phone_level_2, channel, channel_phone, rule_id, trigger_group, inviter_level, tracking_status,
+    review_id, withdraw_status, commission_amount, creation_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from commission_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from commission_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jhh.jhs.loan.entity.share.CommissionOrder" >
+    insert into commission_order (id, per_id, device, 
+      phone, inviter_level_1, inviter_phone_level_1, 
+      inviter_level_2, inviter_phone_level_2, channel, 
+      channel_phone, rule_id, trigger_group,
+      inviter_level, tracking_status, review_id, 
+      withdraw_status, commission_amount, creation_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{perId,jdbcType=INTEGER}, #{device,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=INTEGER}, #{inviterLevel1,jdbcType=INTEGER}, #{inviterPhoneLevel1,jdbcType=VARCHAR}, 
+      #{inviterLevel2,jdbcType=INTEGER}, #{inviterPhoneLevel2,jdbcType=VARCHAR}, #{channel,jdbcType=INTEGER}, 
+      #{channelPhone,jdbcType=VARCHAR}, #{ruleId,jdbcType=INTEGER}, #{triggerGroup,jdbcType=INTEGER},
+      #{inviterLevel,jdbcType=INTEGER}, #{trackingStatus,jdbcType=INTEGER}, #{reviewId,jdbcType=INTEGER}, 
+      #{withdrawStatus,jdbcType=INTEGER}, #{commissionAmount,jdbcType=DECIMAL}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jhh.jhs.loan.entity.share.CommissionOrder" >
+    insert into commission_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="perId != null" >
+        per_id,
+      </if>
+      <if test="device != null" >
+        device,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="inviterLevel1 != null" >
+        inviter_level_1,
+      </if>
+      <if test="inviterPhoneLevel1 != null" >
+        inviter_phone_level_1,
+      </if>
+      <if test="inviterLevel2 != null" >
+        inviter_level_2,
+      </if>
+      <if test="inviterPhoneLevel2 != null" >
+        inviter_phone_level_2,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="channelPhone != null" >
+        channel_phone,
+      </if>
+      <if test="ruleId != null" >
+        rule_id,
+      </if>
+      <if test="triggerGroup != null" >
+        trigger_group,
+      </if>
+      <if test="inviterLevel != null" >
+        inviter_level,
+      </if>
+      <if test="trackingStatus != null" >
+        tracking_status,
+      </if>
+      <if test="reviewId != null" >
+        review_id,
+      </if>
+      <if test="withdrawStatus != null" >
+        withdraw_status,
+      </if>
+      <if test="commissionAmount != null" >
+        commission_amount,
+      </if>
+      <if test="creationDate != null" >
+        creation_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="perId != null" >
+        #{perId,jdbcType=INTEGER},
+      </if>
+      <if test="device != null" >
+        #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="inviterLevel1 != null" >
+        #{inviterLevel1,jdbcType=INTEGER},
+      </if>
+      <if test="inviterPhoneLevel1 != null" >
+        #{inviterPhoneLevel1,jdbcType=VARCHAR},
+      </if>
+      <if test="inviterLevel2 != null" >
+        #{inviterLevel2,jdbcType=INTEGER},
+      </if>
+      <if test="inviterPhoneLevel2 != null" >
+        #{inviterPhoneLevel2,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=INTEGER},
+      </if>
+      <if test="channelPhone != null" >
+        #{channelPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="triggerGroup != null" >
+        #{triggerGroup,jdbcType=INTEGER},
+      </if>
+      <if test="inviterLevel != null" >
+        #{inviterLevel,jdbcType=INTEGER},
+      </if>
+      <if test="trackingStatus != null" >
+        #{trackingStatus,jdbcType=INTEGER},
+      </if>
+      <if test="reviewId != null" >
+        #{reviewId,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawStatus != null" >
+        #{withdrawStatus,jdbcType=INTEGER},
+      </if>
+      <if test="commissionAmount != null" >
+        #{commissionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="creationDate != null" >
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jhh.jhs.loan.entity.share.CommissionOrder" >
+    update commission_order
+    <set >
+      <if test="perId != null" >
+        per_id = #{perId,jdbcType=INTEGER},
+      </if>
+      <if test="device != null" >
+        device = #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="inviterLevel1 != null" >
+        inviter_level_1 = #{inviterLevel1,jdbcType=INTEGER},
+      </if>
+      <if test="inviterPhoneLevel1 != null" >
+        inviter_phone_level_1 = #{inviterPhoneLevel1,jdbcType=VARCHAR},
+      </if>
+      <if test="inviterLevel2 != null" >
+        inviter_level_2 = #{inviterLevel2,jdbcType=INTEGER},
+      </if>
+      <if test="inviterPhoneLevel2 != null" >
+        inviter_phone_level_2 = #{inviterPhoneLevel2,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=INTEGER},
+      </if>
+      <if test="channelPhone != null" >
+        channel_phone = #{channelPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId != null" >
+        rule_id = #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="triggerGroup != null" >
+        trigger_group = #{triggerGroup,jdbcType=INTEGER},
+      </if>
+      <if test="inviterLevel != null" >
+        inviter_level = #{inviterLevel,jdbcType=INTEGER},
+      </if>
+      <if test="trackingStatus != null" >
+        tracking_status = #{trackingStatus,jdbcType=INTEGER},
+      </if>
+      <if test="reviewId != null" >
+        review_id = #{reviewId,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawStatus != null" >
+        withdraw_status = #{withdrawStatus,jdbcType=INTEGER},
+      </if>
+      <if test="commissionAmount != null" >
+        commission_amount = #{commissionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="creationDate != null" >
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jhh.jhs.loan.entity.share.CommissionOrder" >
+    update commission_order
+    set per_id = #{perId,jdbcType=INTEGER},
+      device = #{device,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=INTEGER},
+      inviter_level_1 = #{inviterLevel1,jdbcType=INTEGER},
+      inviter_phone_level_1 = #{inviterPhoneLevel1,jdbcType=VARCHAR},
+      inviter_level_2 = #{inviterLevel2,jdbcType=INTEGER},
+      inviter_phone_level_2 = #{inviterPhoneLevel2,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=INTEGER},
+      channel_phone = #{channelPhone,jdbcType=VARCHAR},
+      rule_id = #{ruleId,jdbcType=INTEGER},
+      trigger_group = #{triggerGroup,jdbcType=INTEGER},
+      inviter_level = #{inviterLevel,jdbcType=INTEGER},
+      tracking_status = #{trackingStatus,jdbcType=INTEGER},
+      review_id = #{reviewId,jdbcType=INTEGER},
+      withdraw_status = #{withdrawStatus,jdbcType=INTEGER},
+      commission_amount = #{commissionAmount,jdbcType=DECIMAL},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByConditions" parameterType="com.jhh.jhs.loan.entity.share.CommissionOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from commission_order
+    <where>
+      <if test="perId != null">
+        AND per_id = #{perId}
+      </if>
+      <if test="device != null">
+        AND device = #{device}
+      </if>
+      <if test="phone != null">
+        AND phone = #{phone}
+      </if>
+      <if test="inviterLevel1 != null">
+        AND inviter_level_1 = #{inviterLevel1}
+      </if>
+      <if test="inviterPhoneLevel1 != null">
+        AND inviter_phone_level_1 = #{inviterPhoneLevel1}
+      </if>
+      <if test="inviterLevel2 != null">
+        AND inviter_level_2 = #{inviterLevel2}
+      </if>
+      <if test="inviterPhoneLevel2 != null">
+        AND inviter_phone_level_2 = #{inviterPhoneLevel2}
+      </if>
+      <if test="channel != null">
+        AND channel = #{channel}
+      </if>
+      <if test="channelPhone != null">
+        AND channel_phone = #{channelPhone}
+      </if>
+      <if test="ruleId != null">
+        AND rule_id = #{ruleId}
+      </if>
+      <if test="triggerGroup != null">
+        AND trigger_group = #{triggerGroup}
+      </if>
+      <if test="inviterLevel != null">
+        AND inviter_level = #{inviterLevel}
+      </if>
+      <if test="trackingStatus != null">
+        AND tracking_status = #{trackingStatus}
+      </if>
+      <if test="reviewId != null">
+        AND review_id = #{reviewId}
+      </if>
+      <if test="withdrawStatus != null">
+        AND withdraw_status = #{withdrawStatus}
+      </if>
+      <if test="commissionAmount != null">
+        AND commission_amount = #{commissionAmount}
+      </if>
+      <if test="creationDate != null">
+        AND creation_date = #{creationDate}
+      </if>
+      <if test="maxCreateDate != null">
+        <![CDATA[ AND creation_date < #{maxCreateDate} ]]>
+      </if>
+      <if test="updateDate != null">
+        AND update_date = #{updateDate}
+      </if>
+      <if test="inviterId != null">
+        AND (inviter_level_1 = #{inviterId} OR inviter_level_2 = #{inviterId})
+      </if>
+    </where>
+  </select>
+
+  <select id="selectInviter" resultType="com.jhh.jhs.loan.entity.share_vo.CommissionOrderVO">
+      SELECT
+          DISTINCT t.per_id AS perId,
+          t.id,
+          info.device AS deviceType,
+    <if test="level == 1">
+          t.inviter_phone_level_1 AS inviterPhone,
+    </if>
+    <if test="level == 2">
+          t.inviter_phone_level_2 AS inviterPhone,
+    </if>
+          t.channel,
+          t.channel_phone AS channelPhone,
+          t.rule_id AS ruleId,
+          t.trigger_group AS triggerGroup,
+          t.inviter_level AS inviterLevel,
+          t.tracking_status AS trackingStatus,
+          t.review_id AS reviewId,
+          t.withdraw_status AS withdrawStatus,
+          t.commission_amount AS commissionAmount,
+          t.creation_date AS creationDate,
+          t.update_date AS updateDate
+
+      FROM (SELECT co1.* FROM commission_order co1 WHERE co1 .per_id IN (
+        SELECT
+        <if test="level == 1">
+          co.inviter_level_1
+        </if>
+
+        <if test="level == 2">
+          co.inviter_level_2
+        </if>
+        FROM commission_order co WHERE co.per_id = #{perId}))t
+        LEFT JOIN phone_info info ON t.per_id = info.per_id ORDER BY t.creation_date DESC limit #{start},#{pageSize};
+  </select>
+
+  <select id="queryLevelCommissionOrderByPersonId" resultType="com.jhh.jhs.loan.entity.manager_vo.CommissionDetailVo">
+
+    SELECT
+    t2.commission,
+    t2.perId,
+    t2.phone,
+    t2.type,
+    t2.tracking_status,
+    co.meaning trackingStatus
+    FROM
+    (
+    SELECT
+    sum( t1.commission_amount ) commission,
+    t1.per_id perId,
+    t1.phone phone,
+    t1.device type,
+    max( t1.tracking_status ) tracking_status
+    FROM
+    (
+    SELECT
+    t.id,
+    t.per_id,
+    t.phone,
+    t.device,
+    t.tracking_status,
+    t.commission_amount
+    FROM
+    commission_order t
+    WHERE
+    <if test="level == 1" >
+      t.inviter_level_1 = #{personId}
+      AND t.inviter_level = 1
+    </if>
+
+    <if test="level == 2" >
+      t.inviter_level_2 = #{personId}
+      AND t.inviter_level = 2
+    </if>
+
+    ) t1
+    GROUP BY t1.per_id ) t2
+    LEFT JOIN code_value co ON t2.tracking_status = co.code_code
+    AND co.code_type = 'commission_rule_tracking_status' LIMIT  #{start},#{pageSize}
+
+  </select>
+
+  <update id="updateCommissionOrderStatus">
+    update commission_order t set t.withdraw_status = #{status}
+    where id in
+    <foreach item="item" collection="ids" separator="," open="(" close=")" index="index">
+      #{item}
+    </foreach>
+  </update>
+
+
+</mapper>

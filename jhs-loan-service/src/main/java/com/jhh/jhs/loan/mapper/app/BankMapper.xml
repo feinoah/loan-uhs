@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jhh.jhs.loan.mapper.app.BankMapper" >
+  <resultMap id="BaseResultMap" type="com.jhh.jhs.loan.entity.app.Bank" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="per_id" property="perId" jdbcType="INTEGER" />
+    <result column="bank_id" property="bankId" jdbcType="INTEGER" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_num" property="bankNum" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="result_code" property="resultCode" jdbcType="VARCHAR" />
+    <result column="result_msg" property="resultMsg" jdbcType="VARCHAR" />
+    <result column="sub_contract_num" property="subContractNum" jdbcType="VARCHAR" />
+    <result column="quick_pay_status" property="quickPayStatus" jdbcType="INTEGER" />
+    <result column="creation_date" property="creationDate" jdbcType="TIMESTAMP" />
+    <result column="creation_user" property="creationUser" jdbcType="INTEGER" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="INTEGER" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="sync" property="sync" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, per_id, bank_id, bank_name, bank_num, phone, status, start_date, end_date, result_code,
+    result_msg, sub_contract_num, creation_date, creation_user, update_date, update_user,
+    sync,bank_code,quick_pay_status
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from bank
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bank
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jhh.jhs.loan.entity.app.Bank" >
+    insert into bank (id, per_id, bank_id,
+    bank_name, bank_num, phone,
+    status, start_date, end_date,
+    result_code, result_msg, sub_contract_num,
+    creation_date, creation_user, update_date,
+    update_user, sync, bank_code, quick_pay_status)
+    values (#{id,jdbcType=INTEGER}, #{perId,jdbcType=INTEGER}, #{bankId,jdbcType=INTEGER},
+    #{bankName,jdbcType=VARCHAR}, #{bankNum,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+    #{status,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE},
+    #{resultCode,jdbcType=VARCHAR}, #{resultMsg,jdbcType=VARCHAR}, #{subContractNum,jdbcType=VARCHAR},
+    #{creationDate,jdbcType=TIMESTAMP}, #{creationUser,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP},
+    #{updateUser,jdbcType=INTEGER}, #{sync,jdbcType=CHAR}, #{bank_code,jdbcType=VARCHAR}, #{quickPayStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jhh.jhs.loan.entity.app.Bank" useGeneratedKeys="true" keyProperty="id">
+    insert into bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="perId != null" >
+        per_id,
+      </if>
+      <if test="bankId != null" >
+        bank_id,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankNum != null" >
+        bank_num,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="resultCode != null" >
+        result_code,
+      </if>
+      <if test="resultMsg != null" >
+        result_msg,
+      </if>
+      <if test="subContractNum != null" >
+        sub_contract_num,
+      </if>
+      <if test="creationDate != null" >
+        creation_date,
+      </if>
+      <if test="creationUser != null" >
+        creation_user,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="sync != null" >
+        sync,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="quickPayStatus != null" >
+        quick_pay_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="perId != null" >
+        #{perId,jdbcType=INTEGER},
+      </if>
+      <if test="bankId != null" >
+        #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNum != null" >
+        #{bankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="resultCode != null" >
+        #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resultMsg != null" >
+        #{resultMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="subContractNum != null" >
+        #{subContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null" >
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationUser != null" >
+        #{creationUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="sync != null" >
+        #{sync,jdbcType=CHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="quickPayStatus != null" >
+        #{quickPayStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jhh.jhs.loan.entity.app.Bank" >
+    update bank
+    <set >
+      <if test="perId != null" >
+        per_id = #{perId,jdbcType=INTEGER},
+      </if>
+      <if test="bankId != null" >
+        bank_id = #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNum != null" >
+        bank_num = #{bankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="resultCode != null" >
+        result_code = #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resultMsg != null" >
+        result_msg = #{resultMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="subContractNum != null" >
+        sub_contract_num = #{subContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null" >
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationUser != null" >
+        creation_user = #{creationUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="sync != null" >
+        sync = #{sync,jdbcType=CHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="quickPayStatus != null" >
+        quick_pay_status = #{quickPayStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jhh.jhs.loan.entity.app.Bank" >
+    update bank
+    set per_id = #{perId,jdbcType=INTEGER},
+    bank_id = #{bankId,jdbcType=INTEGER},
+    bank_name = #{bankName,jdbcType=VARCHAR},
+    bank_num = #{bankNum,jdbcType=VARCHAR},
+    phone = #{phone,jdbcType=VARCHAR},
+    status = #{status,jdbcType=VARCHAR},
+    start_date = #{startDate,jdbcType=DATE},
+    end_date = #{endDate,jdbcType=DATE},
+    result_code = #{resultCode,jdbcType=VARCHAR},
+    result_msg = #{resultMsg,jdbcType=VARCHAR},
+    sub_contract_num = #{subContractNum,jdbcType=VARCHAR},
+    creation_date = #{creationDate,jdbcType=TIMESTAMP},
+    creation_user = #{creationUser,jdbcType=INTEGER},
+    update_date = #{updateDate,jdbcType=TIMESTAMP},
+    update_user = #{updateUser,jdbcType=INTEGER},
+    sync = #{sync,jdbcType=CHAR},
+    bank_code = #{bankCode,jdbcType=CHAR},
+    quick_pay_status = #{quickPayStatus,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 得到签约页面的信息 -->
+  <select id="getSignInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT b.bank_num AS bankNum,b.phone AS phone,c.`name` AS name
+	FROM bank b,card c
+	WHERE b.per_id = c.per_id  
+	AND b.status = '1'
+	AND c.id = (SELECT MAX(id) FROM card WHERE per_id = #{param1})
+  </select>
+  
+  <!-- 根据银行卡号查询有子协议号的记录-->
+  <select id="selectByBankNum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT *
+	FROM bank
+	WHERE bank_num=#{0,jdbcType=VARCHAR}
+	AND sub_contract_num IS NOT NULL
+  </select>
+
+  <!-- 根据卡号，状态查询卡-->
+  <select id="selectByBankNumAndStatus" resultMap="BaseResultMap" >
+    SELECT *
+    FROM bank
+    WHERE bank_num=#{bankNum} AND status != 0
+
+  </select>
+  
+  <!-- 更改用户银行卡状态 -->
+  <update id="updateBankStatus" parameterType="com.jhh.jhs.loan.entity.app.Bank" >
+    update bank
+    set status = #{param1}
+    where per_id = #{param2}
+    and status = #{param3}
+  </update>
+  
+
+  <!-- 查询用户有子协议号的银行卡-->
+  <select id="selectByPerId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT *
+	FROM bank
+	WHERE per_id =#{param1}
+	AND status = '1'
+  </select>
+  
+  <select id="selectAllBanks" resultType="com.jhh.jhs.loan.entity.app.Bank" parameterType="java.lang.String" >
+    SELECT
+	l.bank_name AS bankName,
+	b.id AS id,
+	b.per_id AS perId,
+	b.bank_id AS bankId,
+	b.bank_num AS bankNum,
+	b.phone AS phone,
+	b.`status` AS status,
+	b.sub_contract_num AS subContractNum
+	FROM bank b,bank_list l
+	WHERE b.bank_id = l.id
+	AND b.per_id =#{param1}
+	AND status in ('1','2') ORDER BY status
+  </select>
+
+  <select id="selectPrimayCardByPerId" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM bank
+    where per_id = #{per_id}
+    AND status = '1'
+  </select>
+
+  <select id="selectByBankNumEffective" resultMap="BaseResultMap">
+    SELECT *
+    FROM bank
+    WHERE bank_num=#{bankNum} AND per_id = #{perId} AND status != 0
+  </select>
+  <update id="updateBankStatusWithoutBankNum" >
+    update bank
+    set status = #{status}
+    where per_id = #{perId}
+    and status = #{oldStatus}
+    and bank_num != #{bankNum}
+  </update>
+</mapper>
